@@ -11,4 +11,4 @@ jobs:
           java-version: "23"
           distribution: "temurin"
           cache: 'maven'
-      - run: mvn package --batch-mode
+      - run: mvn -B package --file backend/pom.xml
