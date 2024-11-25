@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>23</java.version>
 		<sonar.organization>nrdnkrmt</sonar.organization>
+		<sonar.project.name>nrdnkrmt_mainsight_backend</sonar.project.name>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
