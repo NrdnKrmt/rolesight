@@ -23,8 +23,8 @@ class UserServiceTest {
         List<Preference> preferences = List.of(preference1, preference2);
         User user1 = new User("1", preferences);
 
-        Game game1 = new Game("4", "League of Legends", "MOBA", "https://picsum.photos/200/303", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.");
-        Game game2 = new Game("7", "Throne and Liberty", "RPG", "https://picsum.photos/200/306", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.");
+        Game game1 = new Game("4", "League of Legends", "MOBA", "https://picsum.photos/200/300", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.");
+        Game game2 = new Game("7", "Throne and Liberty", "MMORPG", "https://picsum.photos/200/300", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.");
 
         when(mockUserRepo.findById("1")).thenReturn(Optional.of(user1));
         when(mockGameService.getGameById("4")).thenReturn(game1);
@@ -36,9 +36,9 @@ class UserServiceTest {
         List<Map<String, Object>> actual = userService.getUserPreferencesByUserId("1");
 
         //THEN
-        List<Map<String, String>> expected = List.of(
-                Map.of("gameName", "League of Legends", "genre", "MOBA", "image", "https://picsum.photos/200/303", "description", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.", "role", "Tank"),
-                Map.of("gameName", "Throne and Liberty", "genre", "RPG", "image", "https://picsum.photos/200/306", "description", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.", "role", "Damage Dealer")
+        List<Map<String, Object>> expected = List.of(
+                Map.of("gameId", "4", "gameName", "League of Legends", "gameGenre", "MOBA", "gameImage", "https://picsum.photos/200/300", "gameDescription", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.", "preferredRole", "Tank"),
+                Map.of("gameId", "7", "gameName", "Throne and Liberty", "gameGenre", "MMORPG", "gameImage", "https://picsum.photos/200/300", "gameDescription", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.", "preferredRole", "Damage Dealer")
         );
 
         assertEquals(expected, actual);

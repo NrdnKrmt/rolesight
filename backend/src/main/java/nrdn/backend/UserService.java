@@ -21,7 +21,7 @@ public class UserService {
 
         for (Preference preference : user.preferences()) {
             Game game = gameService.getGameById(preference.gameId());
-            Map<String, Object> preferenceMap = new HashMap<>();
+            Map<String, Object> preferenceMap = new LinkedHashMap<>();
             preferenceMap.put("gameId", game.id());
             preferenceMap.put("gameName", game.name());
             preferenceMap.put("gameGenre", game.genre());

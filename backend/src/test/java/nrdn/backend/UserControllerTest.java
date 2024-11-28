@@ -41,8 +41,8 @@ class UserControllerTest {
         User user1 = new User("1", preferences);
 
         userRepository.save(user1);
-        when(gameService.getGameById("4")).thenReturn(new Game("4", "League of Legends", "MOBA", "image.jpg", "MOBA game"));
-        when(gameService.getGameById("7")).thenReturn(new Game("7", "Throne and Liberty", "RPG", "image.jpg", "MMO"));
+        when(gameService.getGameById("4")).thenReturn(new Game("4", "League of Legends", "MOBA", "https://picsum.photos/200/300", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."));
+        when(gameService.getGameById("7")).thenReturn(new Game("7", "Throne and Liberty", "MMORPG", "https://picsum.photos/200/300", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."));
 
         //WHEN
         mockMvc.perform(get("/api/users/1/preferences"))
@@ -52,12 +52,20 @@ class UserControllerTest {
                 .andExpect(content().json("""
                                           [
                                               {
-                                                  "gameName": "League of Legends",
-                                                  "role": "Tank"
+                                                "gameId": "4",
+                                                "gameGenre": "MOBA",
+                                                "gameName": "League of Legends",
+                                                "gameImage": "https://picsum.photos/200/300",
+                                                "gameDescription": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+                                                "preferredRole": "Tank"
                                               },
                                               {
-                                                  "gameName": "Throne and Liberty",
-                                                  "role": "Damage Dealer"
+                                                "gameId": "7",
+                                                "gameGenre": "MMORPG",
+                                                "gameName": "Throne and Liberty",
+                                                "gameImage": "https://picsum.photos/200/300",
+                                                "gameDescription": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+                                                "preferredRole": "Damage Dealer"
                                               }
                                           ]
                                           """));
