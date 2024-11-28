@@ -1,0 +1,17 @@
+.preference-info-container {
+    background-color: darkblue;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.preferences-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.preference-box {
+    background-color: darkred;
+    width: 200px;
+    text-align: center;
+}
