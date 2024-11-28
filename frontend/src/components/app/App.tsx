@@ -1,4 +1,3 @@
-import './App.css'
 import PreferenceInfo from "../preferenceInfo/PreferenceInfo.tsx";
 
 function App() {
