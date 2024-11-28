@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -42,5 +44,18 @@ class UserServiceTest {
         );
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void getUserPreferencesByUserIdTest_WhenUserDoesNotExist() {
+        //GIVEN
+        when(mockUserRepo.findById("100")).thenReturn(Optional.empty());
+
+        UserService userService = new UserService(mockUserRepo, mockGameService);
+
+        //WHEN
+
+        //THEN
+        assertThrows(NoSuchElementException.class, () -> userService.getUserPreferencesByUserId("100"));
     }
 }
