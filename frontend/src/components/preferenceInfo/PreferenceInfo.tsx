@@ -17,12 +17,14 @@ function PreferenceInfo() {
 
     return (
         <div className="preference-info-container">
-            <h2>Preferred Games:</h2>
             <div className="preferences-boxes">
                 {preferences.map((pref) => (
-                    <div className="preference-box" key={pref.gameName}>
-                    <p>{pref.gameName}</p>
-                    <p>({pref.role})</p>
+                    <div className="preference-box" key={pref.gameId}>
+                        <h2>{pref.gameName}</h2>
+                        <p><strong>Genre:</strong> {pref.gameGenre}</p>
+                        <img src={pref.gameImage} alt={pref.gameName} className="game-image"/>
+                        <p>{pref.gameDescription}</p>
+                        <h3>{pref.preferredRole}</h3>
                     </div>
                 ))}
             </div>

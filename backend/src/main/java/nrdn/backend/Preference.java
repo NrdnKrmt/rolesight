@@ -1,7 +1,7 @@
 package nrdn.backend;
 
 public record Preference(
-        String gameName,
+        String gameId,
         String role
 ) {
 }
