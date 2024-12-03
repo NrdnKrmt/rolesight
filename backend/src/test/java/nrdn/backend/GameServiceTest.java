@@ -2,6 +2,7 @@ package nrdn.backend;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -41,5 +42,23 @@ class GameServiceTest {
 
         //THEN
         assertThrows(NoSuchElementException.class, () -> gameService.getGameById("100"));
+    }
+
+    @Test
+    void getAllGamesTest() {
+        //GIVEN
+        Game game1 = new Game("4", "League of Legends", "MOBA", "https://picsum.photos/200/300", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.");
+        Game game2 = new Game("7", "Throne and Liberty", "MMORPG", "https://picsum.photos/200/300", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam voluptua.");
+        List<Game> games = List.of(game1, game2);
+
+        when(mockGameRepo.findAll()).thenReturn(games);
+
+        GameService gameService = new GameService(mockGameRepo);
+
+        //WHEN
+        List<Game> actual = gameService.getAllGames();
+
+        //THEN
+        assertEquals(games, actual);
     }
 }
