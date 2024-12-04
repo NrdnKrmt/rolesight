@@ -9,7 +9,7 @@ function AddGame() {
 
     useEffect(() => {
         axios
-            .get("/api/games")
+            .get("/api/games/1")
             .then((response) => {
                 setGamesToAdd(response.data);
             })

@@ -1,6 +1,7 @@
 package nrdn.backend;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,8 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping
-    public List<Game> getAllGames() {
-        return gameService.getAllGames();
+    @GetMapping("/{userId}")
+    public List<Game> getAvailableGamesByUserId(@PathVariable String userId) {
+        return gameService.getAvailableGamesByUserId(userId);
     }
 }
