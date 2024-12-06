@@ -19,4 +19,10 @@ public class UserController {
     public List<Map<String, Object>> getUserPreferencesById(@PathVariable String id) {
         return userService.getUserPreferencesByUserId(id);
     }
+
+    @PostMapping("{id}/preferences/{gameId}/{role}")
+    public User addUserPreferencesByGameId(@PathVariable String id, @PathVariable String gameId, @PathVariable String role) {
+        return userService.addUserPreferencesByGameId(id, gameId, role);
+    }
+
 }
