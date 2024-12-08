@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.any;
 
 class UserServiceTest {
 
@@ -57,5 +58,31 @@ class UserServiceTest {
 
         //THEN
         assertThrows(NoSuchElementException.class, () -> userService.getUserPreferencesByUserId("100"));
+    }
+
+    @Test
+    void addUserPreferencesByGameIdTest() {
+        //GIVEN
+        Preference preference1 = new Preference("4", "Tank");
+        List<Preference> preferences = List.of(preference1);
+        User user1 = new User("1", preferences);
+        when(mockUserRepo.findById("1")).thenReturn(Optional.of(user1));
+
+        Preference preferenceToAdd = new Preference("7", "Damage Dealer");
+
+        List<Preference> updatedPreferences = List.of(preference1, preferenceToAdd);
+        User updatedUser = new User("1", updatedPreferences);
+
+        when(mockUserRepo.save(any(User.class))).thenReturn(updatedUser);
+
+        UserService userService = new UserService(mockUserRepo, mockGameService);
+
+        //WHEN
+        User actual = userService.addUserPreferencesByGameId("1", "7", "Damage Dealer");
+
+        //THEN
+        assertEquals("1", actual.id());
+        assertEquals("7", actual.preferences().get(1).gameId());
+        assertEquals("Damage Dealer", actual.preferences().get(1).role());
     }
 }
