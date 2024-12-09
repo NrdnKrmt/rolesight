@@ -12,6 +12,7 @@ public class UserService {
     public UserService(UserRepository userRepository, GameService gameService) {
         this.userRepository = userRepository;
         this.gameService = gameService;
+
     }
 
     public List<Map<String, Object>> getUserPreferencesByUserId(String id) {
@@ -33,5 +34,20 @@ public class UserService {
         }
 
         return preferencesWithGameInfo;
-}
+    }
+
+    public User addUserPreferencesByGameId(String id, String gameId, String role) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User not found"));
+        gameService.getGameById(gameId);
+
+        Preference newPreference = new Preference(gameId, role);
+        List<Preference> updatedPreferences = new ArrayList<>(user.preferences());
+        updatedPreferences.add(newPreference);
+
+        User updatedUser = new User(user.id(), updatedPreferences);
+
+        userRepository.save(updatedUser);
+
+        return updatedUser;
+    }
 }

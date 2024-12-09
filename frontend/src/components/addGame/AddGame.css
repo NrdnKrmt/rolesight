@@ -1,0 +1,14 @@
+.available-games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.game-container {
+    display: flex;
+    background-color: brown;
+    width: 524px;
+    height: 352px;
+    text-align: center;
+}

@@ -2,6 +2,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {Preference} from "./Preference.ts"
 import "./PreferenceInfo.css"
+import { useNavigate } from "react-router-dom";
 
 function PreferenceInfo() {
 
@@ -15,8 +16,17 @@ function PreferenceInfo() {
             })
     }, []);
 
-    return (
+    const navigate = useNavigate();
+
+    function goToAdd() {
+        navigate("/add");
+    }
+
+        return (
         <div className="preference-info-container">
+            <div className="add-game">
+                <button onClick={goToAdd}>Add Game</button>
+            </div>
             <div className="preferences-boxes">
                 {preferences.map((pref) => (
                     <div className="preference-box" key={pref.gameId}>
