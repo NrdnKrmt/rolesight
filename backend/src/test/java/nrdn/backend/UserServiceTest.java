@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
@@ -84,5 +83,30 @@ class UserServiceTest {
         assertEquals("1", actual.id());
         assertEquals("7", actual.preferences().get(1).gameId());
         assertEquals("Damage Dealer", actual.preferences().get(1).role());
+    }
+
+    @Test
+    void removeUserPreferencesByGameIdTest() {
+        //GIVEN
+        Preference preferenceToKeep = new Preference("4", "Tank");
+        Preference preferenceToRemove = new Preference("7", "Damage Dealer");
+        List<Preference> preferences = List.of(preferenceToKeep, preferenceToRemove);
+        User user1 = new User("1", preferences);
+        when(mockUserRepo.findById("1")).thenReturn(Optional.of(user1));
+
+        List<Preference> updatedPreferences = List.of(preferenceToKeep);
+        User updatedUser = new User("1", updatedPreferences);
+
+        when(mockUserRepo.save(any(User.class))).thenReturn(updatedUser);
+
+        UserService userService = new UserService(mockUserRepo, mockGameService);
+
+        //WHEN
+        User actual = userService.removeUserPreferencesByGameId("1", "7");
+
+        //THEN
+        assertEquals("1", actual.id());
+        assertEquals("4", actual.preferences().getFirst().gameId());
+        assertNotEquals("7", actual.preferences().getFirst().gameId());
     }
 }
