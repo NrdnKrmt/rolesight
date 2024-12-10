@@ -25,4 +25,9 @@ public class UserController {
         return userService.addUserPreferencesByGameId(id, gameId, role);
     }
 
+    @DeleteMapping("{id}/preferences/{gameId}")
+    public User removeUserPreferencesByGameId(@PathVariable String id, @PathVariable String gameId) {
+        return userService.removeUserPreferencesByGameId(id, gameId);
+    }
+
 }

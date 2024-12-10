@@ -10,9 +10,11 @@ import java.util.NoSuchElementException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final String USER_NOT_FOUND_MESSAGE = "User not found";
+
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorMessage handleNoSuchElementException(Exception ex) {
-        return new ErrorMessage(ex.getMessage());
+    public ErrorMessage handleNoSuchElementException() {
+        return new ErrorMessage(USER_NOT_FOUND_MESSAGE);
     }
 }
