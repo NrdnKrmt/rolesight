@@ -19,9 +19,9 @@ function AddGame() {
 
     return (
         <div className="available-games-container">
-            {availableGames.map((pref) => (
-                <div className="game-container" key={pref.id}>
-                    <AddGameCard prop1={pref}/>
+            {availableGames.map((game) => (
+                <div className="game-container" key={game.id}>
+                    <AddGameCard prop1={game}/>
                 </div>
             ))}
         </div>

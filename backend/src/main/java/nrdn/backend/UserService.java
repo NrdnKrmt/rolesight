@@ -16,7 +16,7 @@ public class UserService {
     }
 
     public List<Map<String, Object>> getUserPreferencesByUserId(String id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
         List<Map<String, Object>> preferencesWithGameInfo = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public User addUserPreferencesByGameId(String id, String gameId, String role) {
-        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
         gameService.getGameById(gameId);
 
         Preference newPreference = new Preference(gameId, role);
@@ -45,7 +45,18 @@ public class UserService {
         updatedPreferences.add(newPreference);
 
         User updatedUser = new User(user.id(), updatedPreferences);
+        userRepository.save(updatedUser);
 
+        return updatedUser;
+    }
+
+    public User removeUserPreferencesByGameId(String id, String gameId) {
+        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+
+        List<Preference> preferences = new ArrayList<>(user.preferences());
+        preferences.removeIf(preference -> preference.gameId().equals(gameId));
+
+        User updatedUser = new User(user.id(), preferences);
         userRepository.save(updatedUser);
 
         return updatedUser;

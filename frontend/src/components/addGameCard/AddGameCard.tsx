@@ -7,7 +7,7 @@ type Props = {
 }
 
 function AddGameCard(props: Readonly<Props>) {
-    const { prop1: pref } = props;
+    const { prop1: game } = props;
 
     const [selectedRole, setSelectedRole] = useState<string>("");
 
@@ -22,18 +22,18 @@ function AddGameCard(props: Readonly<Props>) {
 
     return (
         <>
-            <img src={pref.image} alt={pref.name} className="game-image"/>
+            <img src={game.image} alt={game.name} className="game-image"/>
             <div className="game-info">
-                <h2>{pref.name}</h2>
-                <p><strong>Genre:</strong> {pref.genre}</p>
-                <p>{pref.description}</p>
+                <h2>{game.name}</h2>
+                <p><strong>Genre:</strong> {game.genre}</p>
+                <p>{game.description}</p>
                 <select id="role-select" onChange={event => setSelectedRole(event.target.value)}>
                     <option value="">Select a role</option>
                     <option value="Tank">Tank</option>
                     <option value="Damage Dealer">Damage Dealer</option>
                     <option value="Support">Support</option>
                 </select>
-                <button onClick={() => handleAddPreference("1", `${pref.id}`, `${selectedRole}`)}>Add</button>
+                <button onClick={() => handleAddPreference("1", `${game.id}`, `${selectedRole}`)}>Add</button>
             </div>
         </>
     )

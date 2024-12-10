@@ -100,4 +100,31 @@ class UserControllerTest {
                                           }
                                           """));
     }
+
+    @Test
+    void removeUserPreferencesByGameId() throws Exception {
+        //GIVEN
+        Preference preferenceToKeep = new Preference("4", "Tank");
+        Preference preferenceToRemove = new Preference("7", "Damage Dealer");
+        List<Preference> preferences = List.of(preferenceToKeep, preferenceToRemove);
+        User user1 = new User("1", preferences);
+        userRepository.save(user1);
+
+        //WHEN
+        mockMvc.perform(delete("/api/users/1/preferences/7"))
+
+                //THEN
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                                          {
+                                               "id": "1",
+                                               "preferences": [
+                                                   {
+                                                       "gameId": "4",
+                                                       "role": "Tank"
+                                                   }
+                                               ]
+                                          }
+                                          """));
+    }
 }
