@@ -8,9 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.*;
 
 class UserServiceTest {
 
@@ -67,8 +65,7 @@ class UserServiceTest {
         User user1 = new User("1", preferences);
         when(mockUserRepo.findById("1")).thenReturn(Optional.of(user1));
 
-        Preference preferenceToAdd = new Preference("7", "Damage Dealer");
-
+        Preference preferenceToAdd = new Preference("7", "Support");
         List<Preference> updatedPreferences = List.of(preference1, preferenceToAdd);
         User updatedUser = new User("1", updatedPreferences);
 
@@ -78,6 +75,28 @@ class UserServiceTest {
 
         //WHEN
         User actual = userService.addUserPreferencesByGameId("1", "7", "Damage Dealer");
+
+        //THEN
+        assertEquals("1", actual.id());
+        assertEquals("4", actual.preferences().get(0).gameId());
+        assertEquals("Tank", actual.preferences().get(0).role());
+        assertEquals("7", actual.preferences().get(1).gameId());
+        assertEquals("Damage Dealer", actual.preferences().get(1).role());
+    }
+
+    @Test
+    void editUserPreferencesByGameId() {
+        //GIVEN
+        Preference preference1 = new Preference("4", "Tank");
+        Preference preference2 = new Preference("7", "Support");
+        List<Preference> preferences = List.of(preference1, preference2);
+        User user1 = new User("1", preferences);
+        when(mockUserRepo.findById("1")).thenReturn(Optional.of(user1));
+
+        UserService userService = new UserService(mockUserRepo, mockGameService);
+
+        //WHEN
+        User actual = userService.editUserPreferencesByGameId("1", "7", "Damage Dealer");
 
         //THEN
         assertEquals("1", actual.id());
