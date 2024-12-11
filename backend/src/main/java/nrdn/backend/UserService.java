@@ -50,6 +50,24 @@ public class UserService {
         return updatedUser;
     }
 
+    public User editUserPreferencesByGameId(String id, String gameId, String role) {
+        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+
+        List<Preference> preferences = new ArrayList<>(user.preferences());
+
+        for (Preference preference : preferences) {
+            if (preference.gameId().equals(gameId)) {
+                preferences.set(preferences.indexOf(preference), new Preference(gameId, role));
+                break;
+            }
+        }
+
+            User updatedUser = new User(user.id(), preferences);
+            userRepository.save(updatedUser);
+
+            return updatedUser;
+    }
+
     public User removeUserPreferencesByGameId(String id, String gameId) {
         User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
