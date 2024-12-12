@@ -1,13 +1,16 @@
 .available-games-container {
+    background-color: brown;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .game-container {
     display: flex;
-    background-color: brown;
+    background-color: purple;
     width: 524px;
     height: 352px;
     text-align: center;
