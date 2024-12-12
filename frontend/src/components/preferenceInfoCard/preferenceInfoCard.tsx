@@ -4,13 +4,12 @@ import RoleSelect from "../roleSelect/RoleSelect.tsx";
 import {useState} from "react";
 
 type Props = {
-    prop1: Preference
+    preference: Preference
 }
 
 function PreferenceInfoCard(props: Readonly<Props>) {
-    const {prop1} = props;
 
-    const [preference, setPreference] = useState<Preference>(prop1);
+    const [preference, setPreference] = useState<Preference>(props.preference);
     const [selectedRole, setSelectedRole] = useState<string>("");
     const [editMode, setEditMode] = useState<boolean>(false);
 
