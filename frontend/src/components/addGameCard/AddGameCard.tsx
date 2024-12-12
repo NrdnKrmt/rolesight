@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useState} from "react";
 import {Game} from "../addGame/Game.ts";
+import RoleSelect from "../roleSelect/RoleSelect.tsx";
 
 type Props = {
     prop1: Game
@@ -27,12 +28,7 @@ function AddGameCard(props: Readonly<Props>) {
                 <h2>{game.name}</h2>
                 <p><strong>Genre:</strong> {game.genre}</p>
                 <p>{game.description}</p>
-                <select id="role-select" onChange={event => setSelectedRole(event.target.value)}>
-                    <option value="">Select a role</option>
-                    <option value="Tank">Tank</option>
-                    <option value="Damage Dealer">Damage Dealer</option>
-                    <option value="Support">Support</option>
-                </select>
+                <RoleSelect setSelectedRole={setSelectedRole} />
                 <button onClick={() => handleAddPreference("1", `${game.id}`, `${selectedRole}`)}>Add</button>
             </div>
         </>

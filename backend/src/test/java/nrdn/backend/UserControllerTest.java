@@ -102,6 +102,37 @@ class UserControllerTest {
     }
 
     @Test
+    void editUserPreferencesByGameId_WhenUserExists() throws Exception {
+        //GIVEN
+        Preference preference1 = new Preference("4", "Tank");
+        Preference preference2 = new Preference("7", "Support");
+        List<Preference> preferences = List.of(preference1, preference2);
+        User user1 = new User("1", preferences);
+        userRepository.save(user1);
+
+        //WHEN
+        mockMvc.perform(put("/api/users/1/preferences/7/Damage Dealer"))
+
+                //THEN
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                                          {
+                                               "id": "1",
+                                               "preferences": [
+                                                   {
+                                                       "gameId": "4",
+                                                       "role": "Tank"
+                                                   },
+                                                   {
+                                                       "gameId": "7",
+                                                       "role": "Damage Dealer"
+                                                   }
+                                               ]
+                                          }
+                                          """));
+    }
+
+    @Test
     void removeUserPreferencesByGameId() throws Exception {
         //GIVEN
         Preference preferenceToKeep = new Preference("4", "Tank");
