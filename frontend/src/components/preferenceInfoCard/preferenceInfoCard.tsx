@@ -37,23 +37,27 @@ function PreferenceInfoCard(props: Readonly<Props>) {
 
     return (
         <>
-            <h2>{preference.gameName}</h2>
-            <p><strong>Genre:</strong> {preference.gameGenre}</p>
             <img src={preference.gameImage} alt={preference.gameName} className="game-image"/>
-            <p>{preference.gameDescription}</p>
-            <h3>{preference.preferredRole}</h3>
-            {editMode ? (
-                <>
-                    <RoleSelect setSelectedRole={setSelectedRole} />
-                    <button onClick={() => handleEditPreference("1", `${preference.gameId}`, `${selectedRole}`)}>Update</button>
-                    <button onClick={() => setEditMode(false)}>Cancel</button>
-                </>
-            ) : (
-                <>
-                    <button onClick={() => setEditMode(true)}>Edit</button>
-                    <button onClick={() => handleRemovePreference("1", `${preference.gameId}`)}>Remove</button>
-                </>
-            )}
+            <div>
+                <h2>{preference.gameName}</h2>
+                <p><strong>Genre:</strong> {preference.gameGenre}</p>
+                <p>{preference.gameDescription}</p>
+                <h3>{preference.preferredRole}</h3>
+                {editMode ? (
+                    <>
+                        <RoleSelect setSelectedRole={setSelectedRole}/>
+                        <button
+                            onClick={() => handleEditPreference("1", `${preference.gameId}`, `${selectedRole}`)}>Update
+                        </button>
+                        <button onClick={() => setEditMode(false)}>Cancel</button>
+                    </>
+                ) : (
+                    <>
+                        <button onClick={() => setEditMode(true)}>Edit</button>
+                        <button onClick={() => handleRemovePreference("1", `${preference.gameId}`)}>Remove</button>
+                    </>
+                )}
+            </div>
         </>
     )
 }

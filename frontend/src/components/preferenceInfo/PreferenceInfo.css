@@ -2,17 +2,21 @@
     background-color: darkblue;
     padding: 20px;
     margin: 0 auto;
+    width: 60%;
 }
 
 .preferences-boxes {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
+    justify-content: center;
 }
 
 .preference-box {
+    display: flex;
     background-color: darkred;
-    width: 200px;
+    width: 524px;
+    height: 352px;
     text-align: center;
 }
 
