@@ -1,14 +1,14 @@
 import axios from "axios";
-import {useState} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 import {Game} from "../addGame/Game.ts";
 import RoleSelect from "../roleSelect/RoleSelect.tsx";
 
 type Props = {
-    prop1: Game
+    game: Game
+    setAvailableGames: Dispatch<SetStateAction<Game[]>>
 }
 
-function AddGameCard(props: Readonly<Props>) {
-    const { prop1: game } = props;
+function AddGameCard({game, setAvailableGames}: Readonly<Props>) {
 
     const [selectedRole, setSelectedRole] = useState<string>("");
 
@@ -17,7 +17,9 @@ function AddGameCard(props: Readonly<Props>) {
             .post(`/api/users/${userId}/preferences/${gameId}/${role}`, {})
             .then(response => {
                 console.log(response.data);
-                window.location.reload();
+                setAvailableGames((prev) => prev.filter(
+                    (currentAvailableGame) => gameId !== currentAvailableGame.id
+                ))
             })
     };
 
@@ -28,7 +30,7 @@ function AddGameCard(props: Readonly<Props>) {
                 <h2>{game.name}</h2>
                 <p><strong>Genre:</strong> {game.genre}</p>
                 <p>{game.description}</p>
-                <RoleSelect setSelectedRole={setSelectedRole} />
+                <RoleSelect setSelectedRole={setSelectedRole}/>
                 <button onClick={() => handleAddPreference("1", `${game.id}`, `${selectedRole}`)}>Add</button>
             </div>
         </>
