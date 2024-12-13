@@ -1,25 +1,26 @@
 import axios from "axios";
 import {Preference} from "../preferenceInfo/Preference.ts";
 import RoleSelect from "../roleSelect/RoleSelect.tsx";
-import {useState} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 
 type Props = {
-    preference: Preference
+    pref: Preference
+    setPreferences: Dispatch<SetStateAction<Preference[]>>
 }
 
-function PreferenceInfoCard(props: Readonly<Props>) {
+function PreferenceInfoCard({pref, setPreferences}: Readonly<Props>) {
 
-    const [preference, setPreference] = useState<Preference>(props.preference);
+    const [preference, setPreference] = useState<Preference>(pref);
     const [selectedRole, setSelectedRole] = useState<string>("");
     const [editMode, setEditMode] = useState<boolean>(false);
 
-    const handleRemovePreference = (userId: string, gameId: string): void => {
-        axios
+    const handleRemovePreference = async (userId: string, gameId: string): Promise<void> => {
+        await axios
             .delete(`/api/users/${userId}/preferences/${gameId}`, {})
-            .then(response => {
-                console.log(response.data);
-                window.location.reload();
-            })
+
+        setPreferences((prev) => prev.filter(
+            (currentPreferences) => gameId !== currentPreferences.gameId
+        ))
     };
 
     const handleEditPreference = (userId: string, gameId: string, role: string): void => {
