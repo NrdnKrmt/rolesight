@@ -31,7 +31,7 @@ function PreferenceInfo() {
             <div className="preferences-boxes">
                 {preferences.map((pref) => (
                     <div className="preference-box" key={pref.gameId}>
-                        <PreferenceInfoCard preference={pref}/>
+                        <PreferenceInfoCard pref={pref} setPreferences={setPreferences}/>
                     </div>
                 ))}
             </div>

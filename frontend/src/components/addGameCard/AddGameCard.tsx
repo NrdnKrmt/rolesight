@@ -15,8 +15,7 @@ function AddGameCard({game, setAvailableGames}: Readonly<Props>) {
     const handleAddPreference = (userId: string, gameId: string, role: string): void => {
         axios
             .post(`/api/users/${userId}/preferences/${gameId}/${role}`, {})
-            .then(response => {
-                console.log(response.data);
+            .then(() => {
                 setAvailableGames((prev) => prev.filter(
                     (currentAvailableGame) => gameId !== currentAvailableGame.id
                 ))
