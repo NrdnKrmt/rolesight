@@ -12,14 +12,14 @@ function AddGameCard({game, setAvailableGames}: Readonly<Props>) {
 
     const [selectedRole, setSelectedRole] = useState<string>("");
 
-    const handleAddPreference = (userId: string, gameId: string, role: string): void => {
-        axios
+    const handleAddPreference = async (userId: string, gameId: string, role: string): Promise<void> => {
+        await axios
             .post(`/api/users/${userId}/preferences/${gameId}/${role}`, {})
-            .then(() => {
-                setAvailableGames((prev) => prev.filter(
-                    (currentAvailableGame) => gameId !== currentAvailableGame.id
-                ))
-            })
+
+        setAvailableGames((prev) => prev.filter(
+                (currentAvailableGame) => gameId !== currentAvailableGame.id
+            )
+        )
     };
 
     return (

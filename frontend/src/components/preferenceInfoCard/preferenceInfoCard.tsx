@@ -14,14 +14,13 @@ function PreferenceInfoCard({pref, setPreferences}: Readonly<Props>) {
     const [selectedRole, setSelectedRole] = useState<string>("");
     const [editMode, setEditMode] = useState<boolean>(false);
 
-    const handleRemovePreference = (userId: string, gameId: string): void => {
-        axios
+    const handleRemovePreference = async (userId: string, gameId: string): Promise<void> => {
+        await axios
             .delete(`/api/users/${userId}/preferences/${gameId}`, {})
-            .then(() => {
-                setPreferences((prev) => prev.filter(
-                    (currentPreferences) => gameId !== currentPreferences.gameId
-                ))
-            })
+
+        setPreferences((prev) => prev.filter(
+            (currentPreferences) => gameId !== currentPreferences.gameId
+        ))
     };
 
     const handleEditPreference = (userId: string, gameId: string, role: string): void => {
