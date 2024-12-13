@@ -21,7 +21,7 @@ function AddGame() {
         <div className="available-games-container">
             {availableGames.map((game) => (
                 <div className="game-container" key={game.id}>
-                    <AddGameCard prop1={game}/>
+                    <AddGameCard game={game} setAvailableGames={setAvailableGames}/>
                 </div>
             ))}
         </div>
