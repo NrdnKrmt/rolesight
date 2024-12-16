@@ -5,17 +5,21 @@ import "./PreferenceInfo.css"
 import {useNavigate} from "react-router-dom";
 import PreferenceInfoCard from "../preferenceInfoCard/preferenceInfoCard.tsx";
 
-function PreferenceInfo() {
+type Props = {
+    user: string
+}
+
+function PreferenceInfo({user}: Readonly<Props>) {
 
     const [preferences, setPreferences] = useState<Preference[]>([]);
 
     useEffect(() => {
         axios
-            .get("/api/users/1/preferences")
+            .get(`/api/users/${user}/preferences`)
             .then((response) => {
                 setPreferences(response.data);
             })
-    }, []);
+    }, [user]);
 
     const navigate = useNavigate();
 
@@ -31,7 +35,7 @@ function PreferenceInfo() {
             <div className="preferences-boxes">
                 {preferences.map((pref) => (
                     <div className="preference-box" key={pref.gameId}>
-                        <PreferenceInfoCard pref={pref} setPreferences={setPreferences}/>
+                        <PreferenceInfoCard pref={pref} setPreferences={setPreferences} user={user}/>
                     </div>
                 ))}
             </div>

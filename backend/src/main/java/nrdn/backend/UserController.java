@@ -1,5 +1,6 @@
 package nrdn.backend;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,11 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping(value = "/me", produces = "text/plain")
+    public String getMe() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @GetMapping("{id}/preferences")
