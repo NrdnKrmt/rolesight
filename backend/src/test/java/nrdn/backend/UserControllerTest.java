@@ -33,6 +33,18 @@ class UserControllerTest {
     }
 
     @Test
+    void getMeTest_withoutLoggedInUser_expectAnonymousUser() throws Exception {
+        //GIVEN
+
+        //WHEN
+        mockMvc.perform(get("/api/users/me"))
+
+        //THEN
+                .andExpect(status().isOk())
+                .andExpect(content().string("anonymousUser"));
+    }
+
+    @Test
     void getUserPreferencesByUserIdTest_WhenUserExists() throws Exception {
         //GIVEN
         Preference preference1 = new Preference("4", "Tank");
