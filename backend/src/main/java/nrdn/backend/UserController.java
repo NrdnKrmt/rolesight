@@ -16,7 +16,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("me")
+    @GetMapping(value = "/me", produces = "text/plain")
     public String getMe() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
