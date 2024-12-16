@@ -19,12 +19,13 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a
-                        .anyRequest().permitAll()                )
+                        .anyRequest().permitAll())
+                .logout(logout -> logout.logoutUrl("/api/users/logout")
+                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
                 .sessionManagement(s ->
                         s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .oauth2Login(withDefaults());
 
         return http.build();
     }
-
 }
