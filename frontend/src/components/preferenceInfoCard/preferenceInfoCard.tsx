@@ -6,9 +6,10 @@ import {Dispatch, SetStateAction, useState} from "react";
 type Props = {
     pref: Preference
     setPreferences: Dispatch<SetStateAction<Preference[]>>
+    user: string
 }
 
-function PreferenceInfoCard({pref, setPreferences}: Readonly<Props>) {
+function PreferenceInfoCard({pref, setPreferences, user}: Readonly<Props>) {
 
     const [preference, setPreference] = useState<Preference>(pref);
     const [selectedRole, setSelectedRole] = useState<string>("");
@@ -48,14 +49,14 @@ function PreferenceInfoCard({pref, setPreferences}: Readonly<Props>) {
                     <>
                         <RoleSelect setSelectedRole={setSelectedRole}/>
                         <button
-                            onClick={() => handleEditPreference("1", `${preference.gameId}`, `${selectedRole}`)}>Update
+                            onClick={() => handleEditPreference(`${user}`, `${preference.gameId}`, `${selectedRole}`)}>Update
                         </button>
                         <button onClick={() => setEditMode(false)}>Cancel</button>
                     </>
                 ) : (
                     <>
                         <button onClick={() => setEditMode(true)}>Edit</button>
-                        <button onClick={() => handleRemovePreference("1", `${preference.gameId}`)}>Remove</button>
+                        <button onClick={() => handleRemovePreference(`${user}`, `${preference.gameId}`)}>Remove</button>
                     </>
                 )}
             </div>

@@ -6,9 +6,10 @@ import RoleSelect from "../roleSelect/RoleSelect.tsx";
 type Props = {
     game: Game
     setAvailableGames: Dispatch<SetStateAction<Game[]>>
+    user: string;
 }
 
-function AddGameCard({game, setAvailableGames}: Readonly<Props>) {
+function AddGameCard({game, setAvailableGames, user}: Readonly<Props>) {
 
     const [selectedRole, setSelectedRole] = useState<string>("");
 
@@ -30,7 +31,7 @@ function AddGameCard({game, setAvailableGames}: Readonly<Props>) {
                 <p><strong>Genre:</strong> {game.genre}</p>
                 <p>{game.description}</p>
                 <RoleSelect setSelectedRole={setSelectedRole}/>
-                <button onClick={() => handleAddPreference("1", `${game.id}`, `${selectedRole}`)}>Add</button>
+                <button onClick={() => handleAddPreference(`${user}`, `${game.id}`, `${selectedRole}`)}>Add</button>
             </div>
         </>
     )

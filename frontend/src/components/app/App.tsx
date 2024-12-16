@@ -29,8 +29,8 @@ export default function App() {
             <Routes>
                 <Route path="/login" element={<LoginPage user={user}/>}/>
                 <Route element={<ProtectedRoute user={user}/>}>
-                    <Route path="/" element={<PreferenceInfo/>}/>
-                    <Route path="/add" element={<AddGame/>}/>
+                    <Route path="/" element={<PreferenceInfo user={user}/>}/>
+                    <Route path="/add" element={<AddGame user={user}/>}/>
                 </Route>
             </Routes>
         </>

@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -30,6 +31,19 @@ class UserControllerTest {
     @BeforeEach
     void setup() {
         userRepository.deleteAll();
+    }
+
+    @Test
+    @WithMockUser
+    void getMeTest_withoutLoggedInUser_expectUserId() throws Exception {
+        //GIVEN
+
+        //WHEN
+        mockMvc.perform(get("/api/users/me"))
+
+                //THEN
+                .andExpect(status().isOk())
+                .andExpect(content().string("anonymousUser"));
     }
 
     @Test
