@@ -1,8 +1,10 @@
+import "./RoleSelect.css"
+
 type Props = {
     setSelectedRole: (role: string) => void;
 }
 
-function RoleSelect({setSelectedRole}: Readonly<Props>) {
+export default function RoleSelect({setSelectedRole}: Readonly<Props>) {
 
     return (
         <select id="role-select" onChange={event => setSelectedRole(event.target.value)}>
@@ -13,5 +15,3 @@ function RoleSelect({setSelectedRole}: Readonly<Props>) {
         </select>
     )
 }
-
-export default RoleSelect

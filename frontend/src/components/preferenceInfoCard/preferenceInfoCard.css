@@ -1,0 +1,63 @@
+.pref-game-image {
+    border-right: 2px solid #20252A;
+    margin-right: 15px;
+}
+
+.pref-game-info {
+    padding: 10px;
+    align-content: center;
+}
+
+.pref-game-name {
+    height: 40px;
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.pref-game-genre {
+    height: 20px;
+    text-align: left;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.pref-game-description {
+    height: 125px;
+    text-align: left;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.pref-role {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.modify {
+    padding-top: 20px;
+}
+
+.edit.mode {
+    height: 20px;
+}
+
+.update-button {
+    background-color: #388E3C;
+}
+
+.cancel-button {
+    text-align: center;
+    margin-top: 5px;
+    background-color: #616161;
+}
+
+.edit-button {
+    background-color: #E67E22;
+}
+
+.remove-button {
+    background-color: #C62828;
+}

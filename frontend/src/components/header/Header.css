@@ -1,4 +1,35 @@
 .header-container {
-    background-color: yellow;
-    color: darkgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1F2328;
+    padding: 10px 40px;
+    color: white;
+    border-bottom: 2px solid #20252A;
+    margin-bottom: 5px;
+}
+
+.headline {
+    font-size: 40px;
+}
+
+.headline a {
+    text-decoration: none;
+    color: white;
+}
+
+.logout-button {
+    background-color: transparent;
+    color: #D32F2F;
+    border: 2px solid #D32F2F;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #D32F2F;
+    color: white;
+    transform: scale(1.1);
 }

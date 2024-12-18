@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
+import "./LoginPage.css"
 
 type Props = {
     user: string
@@ -21,9 +22,8 @@ export default function LoginPage({user}: Readonly<Props>) {
     }
 
     return (
-        <>
-            <h2>Please login</h2>
-            <button onClick={login}>Login</button>
-        </>
+        <div className="login-container">
+            <button onClick={login}>Login with GitHub</button>
+        </div>
     )
 }

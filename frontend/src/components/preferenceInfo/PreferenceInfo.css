@@ -1,8 +1,16 @@
 .preference-info-container {
-    background-color: darkblue;
+    display: flex;
+    flex-direction: column;
+    background-color: #151A1F;
     padding: 20px;
     margin: 0 auto;
     width: 60%;
+    text-align: right;
+}
+
+.preferences-head {
+    display: flex;
+    justify-content: space-between;
 }
 
 .preferences-boxes {
@@ -14,13 +22,19 @@
 
 .preference-box {
     display: flex;
-    background-color: darkred;
+    background-color: #1C2228;
     width: 524px;
     height: 352px;
     text-align: center;
 }
 
-.add-game {
-    text-align: right;
-    margin-bottom: 20px;
+.add-game-button {
+    margin-left: auto;
+    background-color: #4477CC;
+    margin-bottom: 15px;
+}
+
+.add-game-button:hover {
+    background-color: #5588DD;
+    border-color: #4477CC;
 }

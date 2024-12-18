@@ -1,17 +1,29 @@
 .available-games-container {
-    background-color: brown;
+    background-color: #151A1F;
+    padding: 20px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.available-games-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-boxes {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    width: 60%;
-    margin: 0 auto;
 }
 
 .game-container {
-    display: flex;
-    background-color: purple;
+    background-color: #1C2228;
     width: 524px;
     height: 352px;
-    text-align: center;
+}
+
+.back-button {
+    margin-bottom: 20px;
+    font-size: 12px;
 }

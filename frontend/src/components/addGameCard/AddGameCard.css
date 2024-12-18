@@ -1,0 +1,53 @@
+.game-container {
+    display: flex;
+    width: 524px;
+    height: 352px;
+    background-color: #1C2228;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.game-image {
+    border-right: 2px solid #20252A;
+    margin-right: 15px;
+}
+
+.game-info {
+    padding: 10px;
+    align-content: center;
+}
+
+.game-name {
+    height: 40px;
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.game-genre {
+    height: 20px;
+    text-align: left;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.game-description {
+    height: 180px;
+    text-align: left;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.role-select {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.add-button {
+    background-color: #2E8B57;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

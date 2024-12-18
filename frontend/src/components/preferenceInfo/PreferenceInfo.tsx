@@ -9,7 +9,7 @@ type Props = {
     user: string
 }
 
-function PreferenceInfo({user}: Readonly<Props>) {
+export default function PreferenceInfo({user}: Readonly<Props>) {
 
     const [preferences, setPreferences] = useState<Preference[]>([]);
 
@@ -29,8 +29,9 @@ function PreferenceInfo({user}: Readonly<Props>) {
 
     return (
         <div className="preference-info-container">
-            <div className="add-game">
-                <button onClick={goToAdd}>Add Game</button>
+            <div className="preferences-head">
+                <h2>My Preferences:</h2>
+                <button className="add-game-button" onClick={goToAdd}>Add Game</button>
             </div>
             <div className="preferences-boxes">
                 {preferences.map((pref) => (
@@ -42,5 +43,3 @@ function PreferenceInfo({user}: Readonly<Props>) {
         </div>
     )
 }
-
-export default PreferenceInfo

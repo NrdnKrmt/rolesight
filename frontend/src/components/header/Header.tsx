@@ -16,11 +16,10 @@ function Header({user, getUser}: Readonly<Props>) {
 
     return (
         <div className="header-container">
-            <h1><Link to="/">Rolesight</Link></h1>
+            <h1 className="headline"><Link to="/">Rolesight</Link></h1>
             {user && user !== "anonymousUser" && (
-                <button onClick={logout}>Logout</button>
+                <button className="logout-button" onClick={logout}>LOGOUT</button>
             )}
-            <p>{user}</p>
         </div>
     )
 }
