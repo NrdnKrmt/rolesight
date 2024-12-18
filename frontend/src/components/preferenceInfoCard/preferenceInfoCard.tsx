@@ -2,6 +2,7 @@ import axios from "axios";
 import {Preference} from "../preferenceInfo/Preference.ts";
 import RoleSelect from "../roleSelect/RoleSelect.tsx";
 import {Dispatch, SetStateAction, useState} from "react";
+import "./preferenceInfoCard.css"
 
 type Props = {
     pref: Preference
@@ -40,25 +41,30 @@ function PreferenceInfoCard({pref, setPreferences, user}: Readonly<Props>) {
     return (
         <>
             <img src={preference.gameImage} alt={preference.gameName} className="game-image"/>
-            <div>
-                <h2>{preference.gameName}</h2>
-                <p><strong>Genre:</strong> {preference.gameGenre}</p>
-                <p>{preference.gameDescription}</p>
-                <h3>{preference.preferredRole}</h3>
-                {editMode ? (
-                    <>
-                        <RoleSelect setSelectedRole={setSelectedRole}/>
-                        <button
-                            onClick={() => handleEditPreference(`${user}`, `${preference.gameId}`, `${selectedRole}`)}>Update
-                        </button>
-                        <button onClick={() => setEditMode(false)}>Cancel</button>
-                    </>
-                ) : (
-                    <>
-                        <button onClick={() => setEditMode(true)}>Edit</button>
-                        <button onClick={() => handleRemovePreference(`${user}`, `${preference.gameId}`)}>Remove</button>
-                    </>
-                )}
+            <div className="pref-game-info">
+                <h2 className="pref-game-name">{preference.gameName}</h2>
+                <p className="pref-game-genre"><strong>Genre:</strong> {preference.gameGenre}</p>
+                <p className="pref-game-description">{preference.gameDescription}</p>
+                <h3 className="pref-role">{preference.preferredRole}</h3>
+                <div className="modify">
+                    {editMode ? (
+                        <div>
+                            <RoleSelect setSelectedRole={setSelectedRole}/>
+                            <button
+                                className="update-button" onClick={() => handleEditPreference(`${user}`, `${preference.gameId}`, `${selectedRole}`)}>✓
+                            </button>
+                            <button
+                                className="cancel-button" onClick={() => setEditMode(false)}>Cancel
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <button className="edit-button" onClick={() => setEditMode(true)}>Edit</button>
+                            <button className="remove-button" onClick={() => handleRemovePreference(`${user}`, `${preference.gameId}`)}>Remove
+                            </button>
+                        </>
+                    )}
+                </div>
             </div>
         </>
     )

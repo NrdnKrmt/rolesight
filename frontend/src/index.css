@@ -1,4 +1,18 @@
 body {
   background-color: #121212;
   color: #E0E0E0;
+  margin: 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #4477CC;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
